@@ -55,12 +55,16 @@ class User:
         try:
             with open(file='posts.csv', mode='r', encoding='utf8') as f:
                 lines = csv.reader(f, delimiter='|')
+                message = False
                 for line in lines:
                     if int(line[2]) == self.id_of:
+                        message = True
                         print(prints+f"ID: {line[0]}\n"
                               f"    Text: {line[1]}\n"
                               f"    Created At: {line[3]}\n"
                               f"----------------------------------------------------------------")
+                if message is False:
+                    print(error + f"{self.username} - Bu User Xech Qanday Post Joylamagan!")
         except FileNotFoundError:
             print(error+f"{self.username} - Bu User Xech Qanday Post Joylamagan!")
 
@@ -73,6 +77,7 @@ class User:
                     try:
                         with open(file=f'Comment/{x}-comments.csv', mode='r', encoding='utf8') as f:
                             lines = csv.reader(f, delimiter='|')
+                            message = False
                             for line in lines:
                                 if int(line[2]) == self.id_of:
                                     with open(file='posts.csv', mode='r', encoding='utf8') as e:
@@ -80,11 +85,14 @@ class User:
                                         for post_line in post_lines:
                                             if post_line[0] == line[3]:
                                                 post_info = post_line
-                                    print(prints+f"ID: {line[0]}\n"
-                                          f"    Yozilgan Sharh: {line[1]}\n"
-                                          f"    Sharh Yozilgan Post: {post_info[1]}\n"
-                                          f"    Created At: {line[4]}\n"
-                                          f"----------------------------------------------------------------")
+                                                message = True
+                                                print(prints+f"ID: {line[0]}\n"
+                                                      f"    Yozilgan Sharh: {line[1]}\n"
+                                                      f"    Sharh Yozilgan Post: {post_info[1]}\n"
+                                                      f"    Created At: {line[4]}\n"
+                                                      f"----------------------------------------------------------------")
+                            if message is False:
+                                print(error + f"{self.username} - Bu User Xech Qanday Comment Joylamagan!")
                     except FileNotFoundError:
                         continue
         except FileNotFoundError:
@@ -99,6 +107,7 @@ class User:
                     try:
                         with open(file=f'Like/{h}_likes.csv', mode='r', encoding='utf8') as f:
                             lines = csv.reader(f, delimiter='|')
+                            message = False
                             for line in lines:
                                 if int(line[2]) == self.id_of:
                                     with open(file='posts.csv', mode='r', encoding='utf8') as r:
@@ -106,9 +115,12 @@ class User:
                                         for post_line in post_lines:
                                             if post_line[0] == line[2]:
                                                 post_info = post_line
-                                    print(prints+f"ID: {line[0]}\n"
-                                          f"    Liked Post: {post_info[1]}\n"
-                                          f"    Created: {line[3]}")
+                                                message = True
+                                                print(prints+f"ID: {line[0]}\n"
+                                                      f"    Liked Post: {post_info[1]}\n"
+                                                      f"    Created: {line[3]}")
+                            if message is False:
+                                print(error + f"{self.username} - Bu User Xech Qanday Like Bosmagan!")
                     except FileNotFoundError:
                         continue
         except FileNotFoundError:
@@ -177,7 +189,7 @@ class Twitter:
                     id_of = int(line[0])
         except FileNotFoundError:
             id_of = 0
-        if status is None:
+        if status is None or status == '':
             status = "User"
         user = User(id_of+1, full_name, username, email, password, status)
         with open(file='users.csv', mode='a', encoding='utf8') as f:
@@ -396,9 +408,12 @@ class Twitter:
 
 class Paginator:
     def __init__(self, page_size=5):
-        with open(file='posts.csv', mode='r', encoding='utf-8') as f:
-            lines = csv.reader(f, delimiter='|')
-            self.items = [line for line in lines]
+        try:
+            with open(file='posts.csv', mode='r', encoding='utf-8') as f:
+                lines = csv.reader(f, delimiter='|')
+                self.items = [line for line in lines]
+        except FileNotFoundError as e:
+            raise FileNotFoundError("No Post found!")
         self.page_size = page_size
         self.current = 1
         self.pages = (len(self.items) - 1 + page_size) // page_size
