@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "username": "alo",
+            "name": "Ali",
+            "born_date": "2008-01-01 00:00:00",
+            "password": "01012008"
+        },
+        {
+            "username": "alo",
+            "name": "Ali",
+            "born_date": "2008-01-01 00:00:00",
+            "password": "01012008"
+        }
+    ]
+}
