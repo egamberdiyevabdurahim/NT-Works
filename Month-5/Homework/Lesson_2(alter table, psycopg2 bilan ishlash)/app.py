@@ -144,6 +144,15 @@ def runner():
         print(command+"\n1. Register\n"
               "2. Login\n"
               "3. Exit\n")
+        print("""
+        DEVELOPER:
+        email: developer@gmail.com
+        password: developer
+        
+        Admin:
+        email: admin@gmail.com
+        password: admin
+        """)
 
         choice: str = input(enter+"Enter your choice: ")
 
