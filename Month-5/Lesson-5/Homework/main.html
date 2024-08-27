@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-black">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10 offset-1">
+            <br><h2 style="text-align: center" class="text-white">Aggregate Function, Filtering in SQL</h2>
+          <br/>
+            <details>
+              <summary class="text-white">1) Fist(hamma userlarni first_name va last_name larini olib bering):</summary>
+              <p class="bg-success">SELECT first_name, last_name FROM users GROUP BY first_name, last_name;</p>
+            </details>
+            <details>
+              <summary class="text-white">2) Second(first_name ni ichida l harfi borlarini first_name, last_name, username larini olib bering):</summary>
+              <p class="bg-success">SELECT first_name, last_name, username FROM users WHERE first_name LIKE '%l%' GROUP BY username, first_name, last_name;</p>
+            </details>
+            <details>
+              <summary class="text-white">3) Third(Faqatgina xitoy davlatida tug'ilgan odamlarni olib bering va ular takrorlanmasin):</summary>
+              <p class="bg-success">SELECT DISTINCT * FROM users WHERE country = 'China';</p>
+            </details>
+            <details>
+              <summary class="text-white">4) Fourth(Har bitta davlatdan nechtadan foydalanuvchi borlini chiqarib bering):</summary>
+              <p class="bg-success">SELECT country, COUNT(*) FROM users GROUP BY country;</p>
+            </details>
+            <details>
+              <summary class="text-white">5) Fifth(sizda 4 ta davlar tuple ko'rinishida turibdi, usha davlatlarda tug'ilgan odamlarni olib being):</summary>
+              <p class="bg-success">SELECT * FROM users WHERE country IN ('Uzbekistan', 'Syria', 'Pakistan');</p>
+            </details>
+            <details>
+              <summary class="text-white">6) Sixth(Telefon raqami oxiri 22 bilan tugagan va emaili bor bo'lgan odamlarni username, phone va emaillarini olib bering):</summary>
+              <p class="bg-success">SELECT username, phone_number, email FROM users WHERE phone_number LIKE '%22' AND email IS NOT NULL GROUP BY username, phone_number, email;</p>
+            </details>
+            <details>
+              <summary class="text-white">7) Seventh(2000 va 2024 yillar orasidan tug'ilgan odamlarni username, birthday va country sini olib bering):</summary>
+              <p class="bg-success">SELECT username, birthday, country FROM users WHERE birthday BETWEEN '2020-01-01' AND '2024-08-27';</p>
+            </details>
+            <details>
+              <summary class="text-white">8) Eighth(Eng yoshi katta 10 ta odamni olib bering):</summary>
+              <p class="bg-success">SELECT * FROM users ORDER BY birthday ASC LIMIT 10;</p>
+            </details>
+            <details>
+              <summary class="text-white">9) Ninth(Yoshi bo'yicha odamlarni tartiblang va 30 dan 40 gacha o'rinda turgan odamlarni olib bering):</summary>
+              <p class="bg-success">SELECT * FROM users ORDER BY birthday ASC OFFSET 30 LIMIT 10;</p>
+            </details>
+            <details>
+              <summary class="text-white">10) Tenth(Odamlarni davlar bo'yicha guruhlab oling va faqatgina 10 tadan ko'p odam bo'lgan davlatlarni nomi va sonini olib bering):</summary>
+              <p class="bg-success">SELECT country, COUNT(*) FROM users GROUP BY country HAVING COUNT(*) > 10;</p>
+            </details>
+        </div>
+      </div>
+    </div>
+    <br><br><br><center><h1 class="bg-white">MasterPhone</h1></center>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
