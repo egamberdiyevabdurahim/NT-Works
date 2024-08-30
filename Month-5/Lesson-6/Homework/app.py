@@ -1,6 +1,8 @@
 from utils import for_login, for_company, auth
 from auth import login
 from user.super_admin import super_admin_menu
+from user.company_admin import company_admin_menu
+from user.employee import employee_menu
 
 
 def after_login(username: str):
@@ -13,11 +15,11 @@ def after_login(username: str):
 
     elif for_company.is_company_username_taken(username):
         print("Welcome, Company Admin!")
-        # Perform company admin-specific actions
+        return company_admin_menu.after_login_company(username)
 
     elif auth.is_username_taken(username):
         print("Welcome, Employee!")
-        # Perform employee-specific actions
+        return employee_menu.after_login_employee(username)
 
     else:
         print("Invalid user.")
