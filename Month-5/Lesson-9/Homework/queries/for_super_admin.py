@@ -447,7 +447,7 @@ def all_users_by_new_hired_to_old_hired_query():
     """
     Returns all users sorted by hire_date from new hired to old hired.
     """
-    query = "SELECT * FROM users WHERE status = TRUE ORDER BY hire_date ASC;"
+    query = "SELECT * FROM users WHERE status = TRUE ORDER BY created_at ASC;"
     return execute_query(query, fetch="all")
 
 
@@ -455,21 +455,24 @@ def all_users_by_old_hired_to_new_hired_query():
     """
     Returns all users sorted by hire_date from old hired to new hired.
     """
-    query = "SELECT * FROM users WHERE status = TRUE ORDER BY hire_date DESC;"
+    query = "SELECT * FROM users WHERE status = TRUE ORDER BY created_at DESC;"
     return execute_query(query, fetch="all")
 
 
-def all_users_by_starts_with_letter_query(first: str, second: str, third:str):
+def all_users_by_starts_with_letter_query(first: str, second: str, third: str):
     """
-    Returns all users sorted alphabetically by name.
+    Returns all users whose first name starts with any of the provided letters,
+    sorted alphabetically by name.
     """
     query = f"""
         SELECT * FROM users
         WHERE status = TRUE
-        AND name LIKE 's%' OR name LIKE 's%' OR name LIKE 's%'
-        ORDER BY name ASC;
+        AND (first_name LIKE '{first.upper()}%' OR first_name LIKE '{second.upper()}%' OR first_name LIKE '{third.upper()}%')
+        ORDER BY first_name ASC;
     """
-    return execute_query(query, (first, second, third), fetch="all")
+
+    # Execute the query, passing the parameters correctly
+    return execute_query(query, fetch="all")
 
 
 def all_users_by_starts_with_letter2_query(first: str, second: str):
@@ -479,10 +482,10 @@ def all_users_by_starts_with_letter2_query(first: str, second: str):
     query = f"""
         SELECT * FROM users
         WHERE status = TRUE
-        AND name LIKE 's%' OR name LIKE 's%'
-        ORDER BY name ASC;
+        AND first_name LIKE '{first.upper()}%' OR first_name LIKE '{second.upper()}%'
+        ORDER BY first_name ASC;
     """
-    return execute_query(query, (first, second), fetch="all")
+    return execute_query(query, fetch="all")
 
 
 def all_users_by_starts_with_letter_endswith_letter_query(first: str, second: str):
@@ -492,10 +495,10 @@ def all_users_by_starts_with_letter_endswith_letter_query(first: str, second: st
     query = f"""
         SELECT * FROM users
         WHERE status = TRUE
-        AND name LIKE '{first}%' AND name LIKE '%{second}';
-        ORDER BY name ASC;
+        AND first_name LIKE '{first.upper()}%' AND first_name LIKE '%{second.lower()}'
+        ORDER BY first_name ASC;
     """
-    return execute_query(query, (first, second), fetch="all")
+    return execute_query(query, fetch="all")
 
 
 def all_users_by_ends_with_letter_query(first: str, second: str, third:str):
@@ -505,10 +508,10 @@ def all_users_by_ends_with_letter_query(first: str, second: str, third:str):
     query = f"""
         SELECT * FROM users
         WHERE status = TRUE
-        AND name LIKE '%s' OR name LIKE '%s' OR name LIKE '%s'
-        ORDER BY name ASC;
+        AND first_name LIKE '%{first.lower()}' OR first_name LIKE '%{second.lower()}' OR first_name LIKE '%{third.lower()}'
+        ORDER BY first_name ASC;
     """
-    return execute_query(query, (first, second, third), fetch="all")
+    return execute_query(query, fetch="all")
 
 
 def all_users_by_ends_with_letter2_query(first: str, second: str):
@@ -518,10 +521,10 @@ def all_users_by_ends_with_letter2_query(first: str, second: str):
     query = f"""
         SELECT * FROM users
         WHERE status = TRUE
-        AND name LIKE '%s' OR name LIKE '%s'
-        ORDER BY name ASC;
+        AND first_name LIKE '%{first.lower()}' OR first_name LIKE '%{first.lower()}'
+        ORDER BY first_name ASC;
     """
-    return execute_query(query, (first, second), fetch="all")
+    return execute_query(query, fetch="all")
 
 
 def all_users_by_born_after_2020_query():
@@ -531,8 +534,8 @@ def all_users_by_born_after_2020_query():
     query = """
         SELECT * FROM users
         WHERE status = TRUE
-        AND birth_date > '2020-12-31'
-        ORDER BY name ASC;
+        AND date_of_birth > '2020-12-31'
+        ORDER BY first_name ASC;
     """
     return execute_query(query, fetch="all")
 
@@ -544,8 +547,8 @@ def all_users_by_born_before_2020_query():
     query = """
         SELECT * FROM users
         WHERE status = TRUE
-        AND birth_date < '2020-01-01'
-        ORDER BY name ASC;
+        AND date_of_birth < '2020-01-01'
+        ORDER BY first_name ASC;
     """
     return execute_query(query, fetch="all")
 
@@ -558,7 +561,7 @@ def all_users_by_hired_after_2020_query():
         SELECT * FROM users
         WHERE status = TRUE
         AND created_at > '2020-12-31'
-        ORDER BY name ASC;
+        ORDER BY first_name ASC;
     """
     return execute_query(query, fetch="all")
 
@@ -571,7 +574,7 @@ def all_users_by_hired_before_2020_query():
         SELECT * FROM users
         WHERE status = TRUE
         AND created_at < '2020-01-01'
-        ORDER BY name ASC;
+        ORDER BY first_name ASC;
     """
     return execute_query(query, fetch="all")
 

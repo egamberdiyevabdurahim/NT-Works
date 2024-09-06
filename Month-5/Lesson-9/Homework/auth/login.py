@@ -21,4 +21,4 @@ def login():
         print("Invalid email or password. Please try again.")
         return None
 
-    return user_data['email']
+    return user_data

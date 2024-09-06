@@ -32,6 +32,8 @@ from queries.for_super_admin import (total_number_of_employees_query, number_of_
                                      all_companies_created_after_2020_query, all_companies_created_before_2020_query,
                                      all_departments_created_after_2020_query, all_departments_created_before_2020_query)
 
+from utils.printer import user_printer, company_printer, department_printer
+
 
 def statistics_menu():
     """
@@ -281,135 +283,290 @@ def statistics_menu():
 
     elif choice == '30':
         data = show_all_users_query()
-        print("ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Department ID | Region ID | Salary")
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
         for dat in data:
-            print(dat)
-            print(success + f"{dat['id']} | {dat['first_name']} | {dat['last_name']} | {dat['email']} | {dat['password']} | "
-                            f"{dat['date_of_birth']} | {dat['gender']} | {dat['role']} | {dat['company_id']} | "
-                            f"{data['department_id']} | {dat['region_id']} | {dat['salary']}")
+            user_printer(dat)
 
     elif choice == '31':
-        show_all_companies_query()
+        data = show_all_companies_query()
+        print(success+"ID | Name | CreatedAt")
+        for dat in data:
+            print(success + f"{dat['id']} | {dat['name']} | {dat['created_at']}")
 
     elif choice == '32':
-        show_all_departments_query()
+        data = show_all_departments_query()
+        print(success+"ID | Name | CompanyID | CreatedAt")
+        for dat in data:
+            print(success + f"{dat['id']} | {dat['name']} | {dat['company_id']} | {dat['created_at']}")
 
     elif choice == '33':
-        show_all_roles_query()
+        data = show_all_roles_query()
+        print(success+"ID | Name")
+        for dat in data:
+            print(success + f"{dat['id']} | {dat['name']}")
 
     elif choice == '34':
-        show_all_regions_query()
+        data = show_all_regions_query()
+        print(success + "ID | Name")
+        for dat in data:
+            print(success + f"{dat['id']} | {dat['name']}")
 
     elif choice == '35':
-        sum_of_all_ages_query()
+        data = sum_of_all_ages_query()
+        print(success + f"Sum of All Ages: {data[0]}")
 
     elif choice == '36':
-        all_users_by_older_to_younger_query()
+        data = all_users_by_older_to_younger_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '37':
-        all_users_by_younger_to_older_query()
+        data = all_users_by_younger_to_older_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '38':
-        all_users_by_new_hired_to_old_hired_query()
+        data = all_users_by_new_hired_to_old_hired_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '39':
-        all_users_by_old_hired_to_new_hired_query()
+        data = all_users_by_old_hired_to_new_hired_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '40':
-        all_users_by_starts_with_letter_query('a', 'b', 'c')
+        data = all_users_by_starts_with_letter_query('a', 'b', 'c')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '41':
-        all_users_by_starts_with_letter_query('d', 'e', 'f')
+        data = all_users_by_starts_with_letter_query('d', 'e', 'f')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '42':
-        all_users_by_starts_with_letter_query('g', 'h', 'i')
+        data = all_users_by_starts_with_letter_query('g', 'h', 'i')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '43':
-        all_users_by_starts_with_letter_query('j', 'k', 'l')
+        data = all_users_by_starts_with_letter_query('j', 'k', 'l')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '44':
-        all_users_by_starts_with_letter_query('m', 'n', 'o')
+        data = all_users_by_starts_with_letter_query('m', 'n', 'o')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '45':
-        all_users_by_starts_with_letter_query('p', 'q', 'r')
+        data = all_users_by_starts_with_letter_query('p', 'q', 'r')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '46':
-        all_users_by_starts_with_letter_query('s', 't', 'u')
+        data = all_users_by_starts_with_letter_query('s', 't', 'u')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '47':
-        all_users_by_starts_with_letter_query('v', 'w', 'x')
+        data = all_users_by_starts_with_letter_query('v', 'w', 'x')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '48':
-        all_users_by_starts_with_letter2_query('y', 'z')
+        data = all_users_by_starts_with_letter2_query('y', 'z')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '49':
-        all_users_by_starts_with_letter_endswith_letter_query('a', 'e')
+        data = all_users_by_starts_with_letter_endswith_letter_query('a', 'e')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '50':
-        all_users_by_starts_with_letter_endswith_letter_query('b', 'e')
+        data = all_users_by_starts_with_letter_endswith_letter_query('b', 'e')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '51':
-        all_users_by_starts_with_letter_endswith_letter_query('c', 'e')
+        data = all_users_by_starts_with_letter_endswith_letter_query('c', 'e')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '52':
-        all_users_by_ends_with_letter_query('a', 'b', 'c')
+        data = all_users_by_ends_with_letter_query('a', 'b', 'c')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '53':
-        all_users_by_ends_with_letter_query('d', 'e', 'f')
+        data = all_users_by_ends_with_letter_query('d', 'e', 'f')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '54':
-        all_users_by_ends_with_letter_query('g', 'h', 'i')
+        data = all_users_by_ends_with_letter_query('g', 'h', 'i')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '55':
-        all_users_by_ends_with_letter_query('j', 'k', 'l')
+        data = all_users_by_ends_with_letter_query('j', 'k', 'l')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '56':
-        all_users_by_ends_with_letter_query('m', 'n', 'o')
+        data = all_users_by_ends_with_letter_query('m', 'n', 'o')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '57':
-        all_users_by_ends_with_letter_query('p', 'q', 'r')
+        data = all_users_by_ends_with_letter_query('p', 'q', 'r')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '58':
-        all_users_by_ends_with_letter_query('s', 't', 'u')
+        data = all_users_by_ends_with_letter_query('s', 't', 'u')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '59':
-        all_users_by_ends_with_letter_query('v', 'w', 'x')
+        data = all_users_by_ends_with_letter_query('v', 'w', 'x')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '60':
-        all_users_by_ends_with_letter2_query('y', 'z')
+        data = all_users_by_ends_with_letter2_query('y', 'z')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '61':
-        all_users_by_starts_with_letter_endswith_letter_query('a', 'd')
+        data = all_users_by_starts_with_letter_endswith_letter_query('a', 'd')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '62':
-        all_users_by_starts_with_letter_endswith_letter_query('b', 'd')
+        data = all_users_by_starts_with_letter_endswith_letter_query('b', 'd')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '63':
-        all_users_by_starts_with_letter_endswith_letter_query('c', 'd')
+        data = all_users_by_starts_with_letter_endswith_letter_query('c', 'd')
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '64':
-        all_users_by_born_after_2020_query()
+        data = all_users_by_born_after_2020_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '65':
-        all_users_by_born_before_2020_query()
+        data = all_users_by_born_before_2020_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '66':
-        all_users_by_hired_after_2020_query()
+        data = all_users_by_hired_after_2020_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '67':
-        all_users_by_hired_before_2020_query()
+        data = all_users_by_hired_before_2020_query()
+        print(
+            success + "ID | FirstName | LastName | Email | Password | DateOfBirth | Gender | Role ID | Company ID | Salary | HiderDate")
+        for dat in data:
+            user_printer(dat)
 
     elif choice == '68':
-        all_companies_created_after_2020_query()
+        data = all_companies_created_after_2020_query()
+        print(
+            success + "ID | Company Name | Date Created")
+        for dat in data:
+            company_printer(dat)
 
     elif choice == '69':
-        all_companies_created_before_2020_query()
+        data = all_companies_created_before_2020_query()
+        print(
+            success + "ID | Company Name | Date Created")
+        for dat in data:
+            company_printer(dat)
 
     elif choice == '70':
-        all_departments_created_after_2020_query()
+        data = all_departments_created_after_2020_query()
+        print(
+            success + "ID | Department Name | CompanyID | Date Created")
+        for dat in data:
+            department_printer(dat)
 
     elif choice == '71':
-        all_departments_created_before_2020_query()
+        data = all_departments_created_before_2020_query()
+        print(
+            success + "ID | Department Name | CompanyID | Date Created")
+        for dat in data:
+            department_printer(dat)
 
     elif choice == '72':
         print("Backing...")
@@ -426,26 +583,14 @@ def super_admin_menu():
     Handles the admin menu for a specific user.
     """
     print(f"\nWelcome, Super Admin!\n"
-          "1. Manage Employees (CRUD)\n"
-          "2. Manage Companies (CRUD)\n"
-          "3. Manage Departments (CRUD)\n"
-          "4. Statistics\n"
-          "5. Logout\n")
+          "1. Statistics\n"
+          "2. Logout\n")
     choice = input("Enter your choice: ")
 
     if choice == '1':
-        pass
-
-    elif choice == '2':
-        pass
-
-    elif choice == '3':
-        pass
-
-    elif choice == '4':
         statistics_menu()
 
-    elif choice == '5':
+    elif choice == '2':
         print("Logging out...")
         return None
 
