@@ -1,0 +1,10 @@
+insert into companies (id, name, created_at) values (1, 'Mita', '1991-08-20');
+insert into companies (id, name, created_at) values (2, 'Ainyx', '1980-08-12');
+insert into companies (id, name, created_at) values (3, 'Youtags', '1978-10-17');
+insert into companies (id, name, created_at) values (4, 'Edgetag', '1990-02-14');
+insert into companies (id, name, created_at) values (5, 'Wordware', '1945-09-26');
+insert into companies (id, name, created_at) values (6, 'Meeveo', '1966-10-27');
+insert into companies (id, name, created_at) values (7, 'Miboo', '1964-04-29');
+insert into companies (id, name, created_at) values (8, 'Thoughtworks', '1962-07-29');
+insert into companies (id, name, created_at) values (9, 'Gabtune', '1968-06-27');
+insert into companies (id, name, created_at) values (10, 'Flipopia', '1959-01-20');
