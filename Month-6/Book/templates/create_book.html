@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <br>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingTitle" placeholder="Title" name="title">
+            <label for="floatingTitle">Title</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingDescription" placeholder="Description" name="description">
+            <label for="floatingDescription">Description</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="file" class="form-control" id="floatingImage" name="photo">
+            <label for="floatingImage">Image</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelect" aria-label="Choose Author" name="author">
+                <option selected disabled>Choose Author</option>
+                {% for author in authors %}
+                <option value="{{ author.id }}">{{ author.full_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="floatingSelect">Choose Author</label>
+        </div>
+
+        <h5>Categories</h5>
+        {% for category in categories %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ category.id }}" id="flexCheck{{ forloop.counter }}" name="category[]">
+            <label class="form-check-label" for="flexCheck{{ forloop.counter }}">{{ category.name }}</label>
+        </div>
+        {% endfor %}
+
+        <h5>Tags</h5>
+        {% for tag in tags %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ tag.id }}" id="flex{{ forloop.counter }}" name="tag[]">
+            <label class="form-check-label" for="flex{{ forloop.counter }}">{{ tag.name }}</label>
+        </div>
+        {% endfor %}
+
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+
+<!--Scripts-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
